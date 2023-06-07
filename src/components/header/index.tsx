@@ -42,7 +42,7 @@ function Header() {
   return (
     <header class="py-2 text-lg border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 tracking-[.15em] uppercase fixed z-10 inset-x-0 flex items-center px-4">
       <a
-        class="border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-800 text-gray-900 dark:text-white transition left-0 bg-primary text-primary-content absolute p-3 m-3 -translate-y-16 focus:translate-y-0"
+        class="border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-800 text-gray-900 dark:text-white bg-primary text-primary-content absolute p-3 m-3 skip-link"
         href="#main-content"
       >
         Skip Navigation
