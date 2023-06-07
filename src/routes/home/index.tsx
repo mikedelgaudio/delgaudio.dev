@@ -1,10 +1,10 @@
 const Home = () => {
   return (
     <div>
-      <section class="bg-red-500 min-h-screen">
+      <section class="dark:bg-slate-700 bg-slate-100 min-h-screen">
         <h1>Hello</h1>
       </section>
-      <section class="bg-blue-500 min-h-screen">
+      <section class="dark:bg-slate-700 bg-slate-100  min-h-screen">
         <h2>Hello 2</h2>
       </section>
     </div>
