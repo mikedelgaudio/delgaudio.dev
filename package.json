@@ -25,7 +25,7 @@
     "vite": "^4.3.9"
   },
   "eslintConfig": {
-    "extends": "preact",
+    "extends": "preact/recommended",
     "rules": {
       "no-console": 1
     }

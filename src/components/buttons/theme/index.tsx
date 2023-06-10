@@ -1,31 +1,18 @@
-import { useCallback } from 'preact/hooks';
+import { useContext } from 'preact/hooks';
+import { ThemeContext } from '../../../contexts/theme.context';
 
 export default function ThemeButton({ className }: { className?: string }) {
-  const toggleTheme = useCallback(() => {
-    if (
-      localStorage.theme === 'dark' ||
-      document.documentElement.classList.contains('dark')
-    ) {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-    }
-  }, []);
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
     <button
       onClick={toggleTheme}
-      data-tooltip-target="button-pills-example-toggle-dark-mode-tooltip"
       type="button"
-      data-toggle-dark="light"
       class={`flex items-center p-2 mr-2 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 ${className}`}
     >
       <svg
         aria-hidden="true"
-        data-toggle-icon="moon"
-        class="w-4 h-4"
+        class={`${darkMode ? 'hidden' : 'block'} w-4 h-4`}
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +22,7 @@ export default function ThemeButton({ className }: { className?: string }) {
       <svg
         aria-hidden="true"
         data-toggle-icon="sun"
-        class="hidden w-4 h-4"
+        class={`${darkMode ? 'block' : 'hidden'} w-4 h-4`}
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
