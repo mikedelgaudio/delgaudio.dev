@@ -1,29 +1,19 @@
-const Home = () => {
+function Home() {
   return (
     <div>
-      <section class="dark:bg-slate-700 bg-slate-100 min-h-screen">
-        <h1>Hello</h1>
-      </section>
-      <section class="dark:bg-slate-700 bg-slate-100  min-h-screen">
-        <h2>Hello 2</h2>
+      <section class="min-h-screen">
+        <h1 class="font-semibold text-2xl mb-8 tracking-tighter">
+          hi, I'm Mike
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. In excepturi
+          mollitia voluptatibus officiis soluta porro impedit. Ipsum eum, illo
+          sequi perferendis, repellendus, aliquid quaerat nobis cum repudiandae
+          mollitia eius illum.
+        </p>
       </section>
     </div>
   );
-};
-
-// interface ResourceProps {
-//   title: string;
-//   description: string;
-//   link: string;
-// }
-
-// const Resource = (props: ResourceProps) => {
-//   return (
-//     <a href={props.link}>
-//       <h2>{props.title}</h2>
-//       <p>{props.description}</p>
-//     </a>
-//   );
-// };
+}
 
 export default Home;

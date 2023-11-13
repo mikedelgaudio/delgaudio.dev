@@ -1,14 +1,14 @@
 import { useContext } from 'preact/hooks';
 import { ThemeContext } from '../../../contexts/theme.context';
 
-export default function ThemeButton({ className }: { className?: string }) {
+export default function ThemeButton({ classes }: { classes?: string }) {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
     <button
       onClick={toggleTheme}
       type="button"
-      class={`flex items-center p-2 mr-2 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 ${className}`}
+      class={`flex items-center p-2 text-xs font-medium bg-white border border-cod-gray-200 rounded-lg hover:bg-cod-gray-100 focus:z-10 focus:ring-2 focus:ring-cod-gray-300 dark:focus:ring-cod-gray-500 dark:bg-cod-gray-800 focus:outline-none dark:text-cod-gray-400 dark:border-cod-gray-600 dark:hover:text-white dark:hover:bg-cod-gray-700 ${classes}`}
     >
       <svg
         aria-hidden="true"
