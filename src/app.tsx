@@ -1,7 +1,7 @@
 import { Route, Router } from 'preact-router';
 
 // Code-splitting is automated for `routes` directory
-import Header from './components/header';
+import NavigationBar from './components/navigationBar';
 import { ThemeProvider } from './contexts/theme.context';
 import { useTheme } from './hooks/theme.hook';
 import Contact from './routes/contact';
@@ -16,7 +16,7 @@ function App() {
       <div class="antialiased flex justify-center p-8">
         <div class="flex flex-col max-w-2xl w-full">
           <ThemeProvider>
-            <Header />
+            <NavigationBar />
           </ThemeProvider>
           <main>
             <Router>

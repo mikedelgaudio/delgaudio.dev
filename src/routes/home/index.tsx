@@ -1,5 +1,6 @@
 import { Link } from 'preact-router';
 import Card from '../../components/card';
+import Header from '../../components/header';
 
 const projects = [
   {
@@ -27,9 +28,7 @@ function Home() {
   return (
     <div>
       <section>
-        <h1 class="font-semibold text-2xl mb-8 tracking-tighter">
-          hi, I'm Mike 👋
-        </h1>
+        <Header {...{ message: "hi, I'm Mike 👋" }} />
         <div class="grid gap-4">
           <p>
             Frontend engineer shaping smooth experiences on Microsoft SharePoint

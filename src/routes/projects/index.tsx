@@ -1,5 +1,11 @@
+import Header from '../../components/header';
+
 function Projects() {
-  return <div>Projects</div>;
+  return (
+    <div>
+      <Header {...{ message: 'Projects' }} />
+    </div>
+  );
 }
 
 export default Projects;
