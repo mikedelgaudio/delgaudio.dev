@@ -4,7 +4,6 @@ import { Route, Router } from 'preact-router';
 import NavigationBar from './components/navigationBar';
 import { ThemeProvider } from './contexts/theme.context';
 import { useTheme } from './hooks/theme.hook';
-import Contact from './routes/contact';
 import Home from './routes/home';
 import Projects from './routes/projects';
 
@@ -22,7 +21,6 @@ function App() {
             <Router>
               <Route path="/" component={Home} />
               <Route path="/projects" component={Projects} />
-              <Route path="/contact" component={Contact} />
             </Router>
           </main>
         </div>
