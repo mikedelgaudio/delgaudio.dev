@@ -5,7 +5,7 @@ export interface HeaderProps {
 function Header(props: HeaderProps) {
   const { message } = props;
   return (
-    <h1 class="font-semibold text-2xl mb-8 tracking-tighter">{message}</h1>
+    <h1 class="font-semibold text-3xl mb-8 tracking-tighter">{message}</h1>
   );
 }
 

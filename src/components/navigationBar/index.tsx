@@ -1,5 +1,5 @@
 import { Link } from 'preact-router/match';
-import { useCallback, useContext, useMemo } from 'preact/hooks';
+import { useContext, useMemo } from 'preact/hooks';
 import { GITHUB_ICON, LINKEDIN_ICON } from '../../assets/svgs/icons';
 import { ThemeContext } from '../../contexts/theme.context';
 import SocialMediaButton, {
@@ -39,7 +39,7 @@ const socialMediaButtonsData: SocialMediaButtonProps[] = [
 function NavigationBar() {
   const { darkMode } = useContext(ThemeContext);
 
-  const renderLinks = useCallback(() => {
+  const navLinks = useMemo(() => {
     return links.map(link => {
       return (
         <li key={link.name}>
@@ -75,11 +75,9 @@ function NavigationBar() {
       >
         Skip Navigation
       </a>
-
       <nav>
-        <ul class="flex items-center gap-4">{renderLinks()}</ul>
+        <ul class="flex items-center gap-4">{navLinks}</ul>
       </nav>
-
       <div class="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {socialMediaButtons}
         <ThemeButton />

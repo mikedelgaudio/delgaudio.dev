@@ -1,25 +1,24 @@
 import { Link } from 'preact-router';
+import { Project } from '../../assets/projects/projects';
+import { EXTERNAL_LINK_ICON } from '../../assets/svgs/icons';
 
-export interface CardProps {
-  header: string;
-  description: string;
-  link: string;
-  classNames?: string[];
-}
+export interface CardProps extends Project {}
 
 function Card(props: CardProps) {
+  const { header, description, link } = props;
   return (
     <Link
-      href="#"
-      class="block max-w-sm p-6 bg-white border border-cod-gray-200 rounded-lg shadow hover:bg-cod-gray-100 dark:bg-cod-gray-800 dark:border-cod-gray-700 dark:hover:bg-cod-gray-700"
+      href={link}
+      target="_blank"
+      class="block relative max-w-sm p-6 bg-white border border-cod-gray-200 rounded-lg shadow hover:bg-cod-gray-100 dark:bg-cod-gray-800 dark:border-cod-gray-700 dark:hover:bg-cod-gray-700"
     >
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
-        Noteworthy technology acquisitions 2021
-      </h5>
+      <h3 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
+        {header}
+      </h3>
       <p class="font-normal text-cod-gray-700 dark:text-cod-gray-200">
-        Here are the biggest enterprise technology acquisitions of 2021 so far,
-        in reverse chronological order.
+        {description}
       </p>
+      <div class="absolute top-4 right-4">{EXTERNAL_LINK_ICON}</div>
     </Link>
   );
 }
