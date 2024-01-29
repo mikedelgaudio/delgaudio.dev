@@ -10,7 +10,7 @@ function Card(props: CardProps) {
     <Link
       href={link}
       target="_blank"
-      class="block relative max-w-sm p-6 bg-white border border-cod-gray-200 rounded-lg shadow hover:bg-cod-gray-100 dark:bg-cod-gray-800 dark:border-cod-gray-700 dark:hover:bg-cod-gray-700"
+      class="block relative p-6 bg-white border border-cod-gray-200 rounded-lg shadow hover:bg-cod-gray-100 dark:bg-cod-gray-800 dark:border-cod-gray-700 dark:hover:bg-cod-gray-700"
     >
       <h3 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
         {header}

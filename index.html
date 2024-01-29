@@ -2,46 +2,63 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mike DelGaudio - Frontend Software Engineer</title>
-    <style>
-      #fci-overlay {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        padding: 10px;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        z-index: 9999;
+    <meta
+      name="description"
+      content="The personal website of Mike DelGaudio. Passionate frontend developer, writer, and advocate for all web UI."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://delgaudio.dev" />
+    <meta
+      property="og:title"
+      content="Mike DelGaudio - Frontend Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="The personal website of Mike DelGaudio. Passionate front-end developer, writer, and advocate for all web UI."
+    />
+    <meta
+      property="og:image"
+      content="https://delgaudio.dev/social-cover.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://delgaudio.dev" />
+    <meta
+      property="twitter:title"
+      content="Mike DelGaudio - Frontend Software Engineer"
+    />
+    <meta
+      property="twitter:description"
+      content="The personal website of Mike DelGaudio. Passionate front-end developer, writer, and advocate for all web UI."
+    />
+    <meta
+      property="twitter:image"
+      content="https://delgaudio.dev/social-cover.jpg"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-J53EW5XVC8"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
       }
-    </style>
+      gtag('js', new Date());
+
+      gtag('config', 'G-J53EW5XVC8');
+    </script>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      // Measure FCI
-      const fciOverlay = document.createElement('div');
-      fciOverlay.id = 'fci-overlay';
-      document.body.appendChild(fciOverlay);
-
-      function measureFCI() {
-        const startTime = window.performance.timing.navigationStart;
-        const fciTime =
-          window.performance.timing.domContentLoadedEventEnd - startTime;
-
-        // Display FCI in overlay
-        fciOverlay.innerText = `FCI: ${fciTime}ms`;
-
-        // Remove the event listener after it has been triggered once
-        window.removeEventListener('load', measureFCI);
-      }
-
-      // Add the event listener to trigger the FCI measurement when the page is fully loaded
-      window.addEventListener('load', measureFCI);
-    </script>
   </body>
 </html>
