@@ -16,8 +16,10 @@ export function ThemeProvider({ children }: { children: VNode }) {
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('bg-cod-gray-950');
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('bg-cod-gray-950');
     }
   }, [darkMode]);
 
