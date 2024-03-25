@@ -4,6 +4,7 @@ import { Route, Router } from 'preact-router';
 import NavigationBar from './components/navigationBar';
 import { ThemeProvider } from './contexts/theme.context';
 import Home from './routes/home';
+import NotFound from './routes/notfound';
 import Projects from './routes/projects';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Router>
               <Route path="/" component={Home} />
               <Route path="/projects" component={Projects} />
+              <Route default component={NotFound} />
             </Router>
           </main>
         </div>

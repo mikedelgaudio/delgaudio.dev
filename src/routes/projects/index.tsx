@@ -2,8 +2,11 @@ import { useMemo } from 'preact/hooks';
 import { PROJECTS } from '../../assets/projects/projects';
 import Card from '../../components/card';
 import Header from '../../components/header';
+import { useTitle } from '../../hooks/useTitle';
 
 function Projects() {
+  useTitle('Projects');
+
   const projectsList = useMemo(() => {
     return PROJECTS.map(project => {
       return (

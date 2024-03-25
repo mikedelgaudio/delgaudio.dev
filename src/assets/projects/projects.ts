@@ -5,12 +5,12 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
-  {
-    header: 'Blog',
-    description:
-      'Publishing blog posts with guides on web performance and my home lab',
-    link: 'https://blog.delgaudio.dev/',
-  },
+  // {
+  //   header: 'Blog',
+  //   description:
+  //     'Publishing blog posts with guides on web performance and my home lab',
+  //   link: 'https://blog.delgaudio.dev/',
+  // },
   {
     header: 'Tipsy P2P',
     description:
