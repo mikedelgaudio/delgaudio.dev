@@ -10,14 +10,10 @@ function Card(props: CardProps) {
     <Link
       href={link}
       target="_blank"
-      class="block relative p-6 bg-white border border-cod-gray-200 rounded-lg shadow hover:bg-cod-gray-100 dark:bg-cod-gray-800 dark:border-cod-gray-700 dark:hover:bg-cod-gray-700"
+      class="block relative p-6 border rounded-xl shadow border-slate-200 dark:border-slate-700 hover:bg-slate-300 hover:text-slate-800"
     >
-      <h3 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
-        {header}
-      </h3>
-      <p class="font-normal text-cod-gray-700 dark:text-cod-gray-200">
-        {description}
-      </p>
+      <h3 class="mb-2 text-2xl font-bold tracking-tight">{header}</h3>
+      <p class="font-normal">{description}</p>
       <div class="absolute top-4 right-4">{EXTERNAL_LINK_ICON}</div>
     </Link>
   );
