@@ -1,13 +1,16 @@
 import { animate, stagger } from 'motion/react';
 import { Link } from 'preact-router';
 import { useEffect, useMemo } from 'preact/hooks';
+import avatar from '../../assets/avatar.webp';
 import { PROJECTS } from '../../assets/projects/projects';
 import Card from '../../components/card';
+import './Home.css';
 
 function Home() {
   useEffect(() => {
     // Trigger staggered animation for the skills list
     animate('.skill-item', { opacity: 1, y: [50, 0] }, { delay: stagger(0.2) });
+    animate('.avatar', { opacity: 1, y: [50, 0] }, { delay: stagger(0.2) });
   }, []);
 
   const projectsList = useMemo(() => {
@@ -26,16 +29,24 @@ function Home() {
 
   return (
     <div class="grid gap-5 z-[1]">
-      <section class="grid grid-cols-1 gap-4">
-        <h1 class="font-semibold text-4xl mb-8 tracking-tighter">
-          hi, I'm Mike 👋
-        </h1>
-        <div class={'grid'}>
+      <section class="grid grid-cols-1 ">
+        <div class={'flex items-center gap-4 flex-nowrap'}>
+          <h1 class="font-semibold lg:text-[5rem] text-[3rem] tracking-tighter">
+            Hi, I'm Mike
+          </h1>
+          <img
+            src={avatar}
+            alt="" // Intentionally left empty since the image is purely decorative
+            class="opacity-0 avatar lg:w-16 lg:h-16 w-10 h-10"
+          />
+        </div>
+
+        <div class={'grid lg:mt-[-1rem]  lg:gap-0 gap-1'}>
           <p class={'text-xl m-0'}>
             A frontend engineer who loves creating performant and user friendly
             experiences.
           </p>
-          <p class={'text-lg m-0'}>
+          <p class={'text-base m-0'}>
             Currently at{' '}
             <span class={'font-bold text-[#2F855A] dark:text-[#81bc0d]'}>
               Microsoft
