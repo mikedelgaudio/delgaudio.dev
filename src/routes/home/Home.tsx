@@ -4,7 +4,6 @@ import { useEffect, useMemo } from 'preact/hooks';
 import avatar from '../../assets/avatar.webp';
 import { PROJECTS } from '../../assets/projects/projects';
 import Card from '../../components/card';
-import './Home.css';
 
 function Home() {
   useEffect(() => {
