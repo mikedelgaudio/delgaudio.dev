@@ -1,7 +1,6 @@
 import { animate, stagger } from 'motion/react';
 import { Link } from 'preact-router';
 import { useEffect, useMemo } from 'preact/hooks';
-import avatar from '../../assets/avatar.webp';
 import { PROJECTS } from '../../assets/projects/projects';
 import Card from '../../components/card';
 
@@ -34,7 +33,7 @@ function Home() {
             Hi, I'm Mike
           </h1>
           <img
-            src={avatar}
+            src={'https://cdn.delgaudio.dev/avatar.webp'}
             alt="" // Intentionally left empty since the image is purely decorative
             class="opacity-0 avatar lg:w-16 lg:h-16 w-10 h-10"
           />
