@@ -9,26 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "motion": "^11.16.1",
-    "preact": "^10.16.0",
+    "motion": "^12.36.0",
+    "preact": "^10.29.0",
     "preact-router": "^4.1.2"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.5.0",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.53.0",
-    "eslint-config-preact": "^1.3.0",
-    "lint-staged": "^15.1.0",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5"
-  },
-  "eslintConfig": {
-    "extends": "preact/recommended",
-    "rules": {
-      "no-console": 1
-    }
+    "@preact/preset-vite": "^2.10.3",
+    "@tailwindcss/vite": "^4.2.1",
+    "eslint": "^9.39.4",
+    "eslint-config-preact": "^2.0.0",
+    "lint-staged": "^16.4.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,html,css}": [

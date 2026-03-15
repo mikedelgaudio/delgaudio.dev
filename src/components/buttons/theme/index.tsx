@@ -8,7 +8,7 @@ export default function ThemeButton() {
     <button
       onClick={toggleTheme}
       type="button"
-      class="hidden xs:flex justify-center items-center p-2 text-xs font-medium bg-white border border-slate-200 rounded-lg hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-600 dark:hover:text-white dark:hover:bg-slate-700 focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-500 focus:outline-none"
+      class="hidden xs:flex justify-center items-center p-2 text-xs font-medium bg-white border border-slate-200 rounded-lg hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-600 dark:hover:text-white dark:hover:bg-slate-700 focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-500 focus:outline-hidden"
     >
       <svg
         aria-hidden="true"

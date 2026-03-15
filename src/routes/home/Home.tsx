@@ -41,7 +41,7 @@ function Home() {
 
         <div class={'grid lg:mt-[-1rem]  lg:gap-0 gap-1'}>
           <p class={'text-xl m-0'}>
-            A frontend engineer who loves creating performant and user friendly
+            A software engineer who loves creating performant and user friendly
             experiences.
           </p>
           <p class={'text-base m-0'}>
