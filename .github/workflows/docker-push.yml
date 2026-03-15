@@ -23,6 +23,7 @@ jobs:
         with:
           images: mikedelgaudio/delgaudiov3
           tags: |
+            type=raw,value=latest
             type=raw,value={{date 'YYYYMMDD'}}
 
       - name: Login to Docker Hub

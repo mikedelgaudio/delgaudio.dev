@@ -2,13 +2,13 @@
 FROM node:20-bullseye AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run build
 
 
 ### STAGE 2: NGINX ###
-FROM nginx:1.25 as production
+FROM nginx:1.25 AS production
 WORKDIR /app
 RUN chown -R nginx:nginx /app && chmod -R 755 /app && \
         chown -R nginx:nginx /var/cache/nginx && \
