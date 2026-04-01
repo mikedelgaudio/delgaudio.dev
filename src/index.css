@@ -185,6 +185,10 @@
 }
 
 /* ── Base typography ── */
+html {
+  background-color: var(--theme-bg);
+}
+
 body {
   line-height: 1.65;
 }

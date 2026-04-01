@@ -21,6 +21,10 @@ function getInitialTheme(): string {
 
 function applyThemeAttribute(key: string) {
   document.documentElement.setAttribute('data-theme', key);
+  // Update mobile browser chrome color to match theme background
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--theme-bg').trim();
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', bg);
 }
 
 export function ThemeProvider({ children }: { children: VNode }) {
