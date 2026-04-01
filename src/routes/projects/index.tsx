@@ -1,5 +1,4 @@
-import { animate, stagger } from 'motion/react';
-import { useEffect, useMemo } from 'preact/hooks';
+import { useMemo } from 'preact/hooks';
 import { PROJECTS } from '../../assets/projects/projects';
 import Card from '../../components/card';
 import { useTitle } from '../../hooks/useTitle';
@@ -7,19 +6,15 @@ import { useTitle } from '../../hooks/useTitle';
 function Projects() {
   useTitle('Projects');
 
-  useEffect(() => {
-    // Trigger staggered animation for the skills list
-    animate('.skill-item', { opacity: 1, y: [50, 0] }, { delay: stagger(0.2) });
-  }, []);
-
   const projectsList = useMemo(() => {
-    return PROJECTS.map(project => {
+    return PROJECTS.map((project, index) => {
       return (
         <Card
           key={project.header}
           header={project.header}
           description={project.description}
           link={project.link}
+          index={index}
         />
       );
     });

@@ -2,15 +2,18 @@ import { Link } from 'preact-router';
 import { Project } from '../../assets/projects/projects';
 import { EXTERNAL_LINK_ICON } from '../../assets/svgs/icons';
 
-export interface CardProps extends Project {}
+export interface CardProps extends Project {
+  index?: number;
+}
 
 function Card(props: CardProps) {
-  const { header, description, link } = props;
+  const { header, description, link, index = 0 } = props;
   return (
     <Link
       href={link}
       target="_blank"
-      class="skill-item opacity-0 block relative p-6 border rounded-xl shadow border-slate-200 dark:border-slate-700 dark:hover:dark:bg-slate-800 hover:bg-slate-100"
+      class="skill-item block relative p-6 border rounded-xl shadow border-outline hover:bg-surface-hover animate-fade-in-up"
+      style={{ animationDelay: `${index * 100}ms` }}
     >
       <h3 class="mb-2 text-2xl font-bold tracking-tight">{header}</h3>
       <p class="font-normal">{description}</p>

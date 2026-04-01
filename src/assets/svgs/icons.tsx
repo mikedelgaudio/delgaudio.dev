@@ -33,7 +33,7 @@ export const LINKEDIN_ICON = (
 
 export const EXTERNAL_LINK_ICON = (
   <svg
-    class="w-[0.65rem] h-[0.65rem] text-slate-500"
+    class="w-[0.65rem] h-[0.65rem] text-on-surface-muted"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"

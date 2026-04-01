@@ -1,15 +1,11 @@
-import { animate, stagger } from 'motion/react';
 import { Link } from 'preact-router';
-import { useEffect, useMemo } from 'preact/hooks';
+import { useMemo } from 'preact/hooks';
 import { PROJECTS } from '../../assets/projects/projects';
 import Card from '../../components/card';
+import AsciiHero from '../../components/asciiHero';
+import BlobBuddy from '../../components/blobBuddy';
 
 function Home() {
-  useEffect(() => {
-    // Trigger staggered animation for the skills list
-    animate('.skill-item', { opacity: 1, y: [50, 0] }, { delay: stagger(0.2) });
-    animate('.avatar', { opacity: 1, y: [50, 0] }, { delay: stagger(0.2) });
-  }, []);
 
   const projectsList = useMemo(() => {
     return PROJECTS.map((project, index) => {
@@ -20,51 +16,59 @@ function Home() {
           header={project.header}
           description={project.description}
           link={project.link}
+          index={index}
         />
       );
     });
   }, [PROJECTS]);
 
   return (
-    <div class="grid gap-5 z-[1]">
-      <section class="grid grid-cols-1 ">
-        <div class={'flex items-center gap-4 flex-nowrap'}>
-          <h1 class="font-semibold lg:text-[5rem] text-[3rem] tracking-tighter">
-            Hi, I'm Mike
-          </h1>
-          <img
-            src={'https://cdn.delgaudio.dev/avatar.webp'}
-            alt="" // Intentionally left empty since the image is purely decorative
-            class="opacity-0 avatar lg:w-16 lg:h-16 w-10 h-10"
-          />
+    <div class="grid z-[1]">
+      <section class="intro-section relative pt-10 pb-12 overflow-hidden">
+        <div class="sm:max-w-[55%] mb-4">
+          <AsciiHero text="mike d" />
+          <h1 class="sr-only">Mike D — Software Engineer</h1>
         </div>
 
-        <div class={'grid lg:mt-[-1rem]  lg:gap-0 gap-1'}>
-          <p class={'text-xl m-0'}>
-            A software engineer who loves creating performant and user friendly
-            experiences.
-          </p>
-          <p class={'text-base m-0'}>
-            Currently at{' '}
-            <span class={'font-bold text-[#2F855A] dark:text-[#81bc0d]'}>
-              Microsoft
-            </span>
-            . Previously at{' '}
-            <span class={'font-bold text-[#09a7f0]'}>Google</span> and{' '}
-            <span class={'font-bold text-[#f35326]'}>Colgate</span>.
-          </p>
+        <p class={'sm:max-w-[55%] text-base leading-[1.75]'}>
+          Software engineer at{' '}
+          <span class={'font-semibold text-[#22c55e]'}>Microsoft</span>.
+          Previously at{' '}
+          <span class={'font-semibold text-[#09a7f0]'}>Google</span> and{' '}
+          <span class={'font-semibold text-[#f35326]'}>Colgate</span>. I build
+          performant, accessible interfaces and the developer tooling behind
+          them, from performance-critical React apps to AI-powered tooling
+          shipping to thousands of users.
+        </p>
+
+        <div class="hidden sm:block absolute right-8 bottom-6 w-[140px] md:w-[180px] lg:w-[220px]">
+          <BlobBuddy />
         </div>
       </section>
 
-      <section class="grid gap-4 dark:text-slate-100 pt-6 pb-6 rounded-xl">
-        <h2 class="font-semibold text-2xl tracking-tighter">Recent Projects</h2>
-        <div class="grid gap-2">
+      <section class="now-block mb-12">
+        <span class="now-label">What I'm working on</span>
+        <p>
+          Building <strong>MCP integrations</strong> that connect AI agents to
+          real user file systems and workflow automations on the web. Focused on search,
+          retrieval, and orchestration tooling that powers{' '}
+          <strong>agentic experiences</strong> at scale.
+        </p>
+      </section>
+
+      <section>
+        <h2
+          class="font-semibold text-[1.1rem] pb-2 mb-6 border-b border-outline"
+        >
+          Recent Projects
+        </h2>
+        <div class="grid gap-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {projectsList}
           </div>
           <Link
             href="/projects"
-            class="hover:underline flex items-center gap-1"
+            class="text-accent hover:underline text-[0.88rem] flex items-center gap-1"
           >
             See all projects{' '}
             <svg

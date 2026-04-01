@@ -1,11 +1,10 @@
 import { Link } from 'preact-router/match';
-import { useContext, useMemo } from 'preact/hooks';
+import { useMemo } from 'preact/hooks';
 import { GITHUB_ICON, LINKEDIN_ICON } from '../../assets/svgs/icons';
-import { ThemeContext } from '../../contexts/theme.context';
 import SocialMediaButton, {
   SocialMediaButtonProps,
 } from '../buttons/socialMedia';
-import ThemeButton from '../buttons/theme';
+import ThemeSelector from '../themeSelector';
 
 const links = [
   {
@@ -37,24 +36,22 @@ const socialMediaButtonsData: SocialMediaButtonProps[] = [
 ];
 
 function NavigationBar() {
-  const { darkMode } = useContext(ThemeContext);
-
   const navLinks = useMemo(() => {
     return links.map(link => {
       return (
         <li key={link.name}>
           <Link
-            activeClassName={darkMode ? '!text-white' : '!text-black'}
+            activeClassName="!text-on-surface"
             href={link.path}
             target={link?.target ?? '_self'}
-            class="block py-2 rounded md:hover:bg-transparent md:border-0 hover:text-slate-700 md:p-0 dark:hover:text-slate-500 dark:hover:bg-transparent focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-500 focus:outline-hidden text-slate-400"
+            class="block py-2 rounded md:hover:bg-transparent md:border-0 hover:text-link-hover md:p-0 focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-ring focus:outline-hidden text-on-surface-muted"
           >
             {link.name}
           </Link>
         </li>
       );
     });
-  }, [links, darkMode]);
+  }, [links]);
 
   const socialMediaButtons = useMemo(() => {
     return socialMediaButtonsData.map(socialMediaButton => {
@@ -68,19 +65,19 @@ function NavigationBar() {
   }, [socialMediaButtonsData]);
 
   return (
-    <header class="flex items-center justify-between text-sm tracking-[.15em] uppercase mb-16">
+    <header class="flex items-center justify-between font-mono text-[0.82rem] tracking-normal mb-10">
       <a
-        class="rounded border-slate-200 bg-slate-50 dark:bg-slate-900 dark:border-slate-800 text-slate-900 dark:text-white bg-primary text-primary-content absolute p-3 m-3 skip-link focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-500 focus:outline-hidden"
+        class="rounded border-outline bg-surface-alt text-on-surface absolute p-3 m-3 skip-link focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-ring focus:outline-hidden"
         href="#main-content"
       >
         Skip Navigation
       </a>
       <nav>
-        <ul class="flex items-center gap-4">{navLinks}</ul>
+        <ul class="flex items-center gap-7">{navLinks}</ul>
       </nav>
       <div class="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {socialMediaButtons}
-        <ThemeButton />
+        <ThemeSelector />
       </div>
     </header>
   );

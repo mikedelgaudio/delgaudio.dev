@@ -1,44 +1,61 @@
 import { VNode, createContext } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useCallback, useEffect, useState } from 'preact/hooks';
+import {
+  DEFAULT_DARK_THEME,
+  THEMES,
+  THEME_STORAGE_KEY,
+} from '../themes/themes';
 
 export const ThemeContext = createContext({
-  darkMode: false,
-  toggleTheme: () => {},
+  theme: DEFAULT_DARK_THEME,
+  setTheme: (_key: string, _event?: MouseEvent) => {},
 });
 
+function getInitialTheme(): string {
+  const stored = localStorage.getItem(THEME_STORAGE_KEY);
+  if (stored && THEMES.some(t => t.key === stored)) return stored;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? DEFAULT_DARK_THEME
+    : DEFAULT_DARK_THEME;
+}
+
+function applyThemeAttribute(key: string) {
+  document.documentElement.setAttribute('data-theme', key);
+}
+
 export function ThemeProvider({ children }: { children: VNode }) {
-  const [darkMode, setDarkMode] = useState(
-    (localStorage.getItem('theme') === null &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches) ||
-      localStorage.getItem('theme') === 'dark',
-  );
+  const [theme, setThemeState] = useState(getInitialTheme);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.add('bg-slate-950');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.remove('bg-slate-950');
-    }
-  }, [darkMode]);
+    applyThemeAttribute(theme);
+  }, [theme]);
+
+  const setTheme = useCallback(
+    (key: string, event?: MouseEvent) => {
+      if (key === theme) return;
+
+      const apply = () => {
+        applyThemeAttribute(key);
+        localStorage.setItem(THEME_STORAGE_KEY, key);
+        setThemeState(key);
+      };
+
+      // Use View Transitions API with ripple effect when available
+      if (event && (document as any).startViewTransition) {
+        const x = event.clientX;
+        const y = event.clientY;
+        document.documentElement.style.setProperty('--ripple-x', `${x}px`);
+        document.documentElement.style.setProperty('--ripple-y', `${y}px`);
+        (document as any).startViewTransition(apply);
+      } else {
+        apply();
+      }
+    },
+    [theme],
+  );
 
   return (
-    <ThemeContext.Provider
-      value={{
-        darkMode,
-        toggleTheme: () => {
-          if (darkMode) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-          }
-          setDarkMode((prevDarkMode: boolean) => !prevDarkMode);
-        },
-      }}
-    >
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
