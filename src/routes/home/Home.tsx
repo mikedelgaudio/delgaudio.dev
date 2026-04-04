@@ -1,12 +1,11 @@
 import { Link } from 'preact-router';
 import { useMemo } from 'preact/hooks';
 import { PROJECTS } from '../../assets/projects/projects';
-import Card from '../../components/card';
 import AsciiHero from '../../components/asciiHero';
 import BlobBuddy from '../../components/blobBuddy';
+import Card from '../../components/card';
 
 function Home() {
-
   const projectsList = useMemo(() => {
     return PROJECTS.map((project, index) => {
       if (index > 2) return;
@@ -36,9 +35,9 @@ function Home() {
           Previously at{' '}
           <span class={'font-semibold text-[#09a7f0]'}>Google</span> and{' '}
           <span class={'font-semibold text-[#f35326]'}>Colgate</span>. I build
-          performant, accessible interfaces and the developer tooling behind
-          them, from performance-critical React apps to AI-powered tooling
-          shipping to thousands of users.
+          performance-driven systems and MCP tooling that empowers them. I focus
+          on low-level performance, user experiences, and building interfaces
+          that integrate LLMs into real workflows.
         </p>
 
         <div class="hidden sm:block absolute right-8 bottom-6 w-[140px] md:w-[180px] lg:w-[220px]">
@@ -50,16 +49,14 @@ function Home() {
         <span class="now-label">What I'm working on</span>
         <p>
           Building <strong>MCP integrations</strong> that connect AI agents to
-          real user file systems and workflow automations on the web. Focused on search,
-          retrieval, and orchestration tooling that powers{' '}
+          real user file systems and workflow automations on the web. Focused on
+          search, retrieval, and orchestration tooling that powers{' '}
           <strong>agentic experiences</strong> at scale.
         </p>
       </section>
 
       <section>
-        <h2
-          class="font-semibold text-[1.1rem] pb-2 mb-6 border-b border-outline"
-        >
+        <h2 class="font-semibold text-[1.1rem] pb-2 mb-6 border-b border-outline">
           Recent Projects
         </h2>
         <div class="grid gap-4">
