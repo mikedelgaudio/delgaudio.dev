@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'preact/hooks';
+import { useLayoutEffect, useRef } from 'preact/hooks';
 
 interface AsciiHeroProps {
   text?: string;
@@ -8,7 +8,7 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -53,12 +53,21 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
     const MOUSE_R = isMobile ? 50 : 100;
     const MOUSE_F = isMobile ? 5 : 3;
     const baseFontSize = 80;
-    const H = isMobile ? 58 : 100;
+
+    // Compute height upfront to prevent layout shift
+    const FONT_FAMILY = 'ui-monospace, "Courier New", monospace';
+    const tmpCtx = document.createElement('canvas').getContext('2d')!;
+    tmpCtx.font = `600 ${baseFontSize}px ${FONT_FAMILY}`;
+    const naturalW = tmpCtx.measureText(text).width;
+    const estimatedSize = Math.floor(baseFontSize * (parentW / naturalW) * 0.95);
+    const estimatedH = Math.ceil(estimatedSize * 1.15);
+
+    container.style.height = estimatedH + 'px';
 
     canvas.style.width = parentW + 'px';
-    canvas.style.height = H + 'px';
+    canvas.style.height = estimatedH + 'px';
     canvas.width = parentW * dpr;
-    canvas.height = H * dpr;
+    canvas.height = estimatedH * dpr;
     ctx.scale(dpr, dpr);
 
     // Particle type
@@ -84,17 +93,19 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
 
     // Font measurement and particle creation
     document.fonts.ready.then(() => {
-      const FONT_FAMILY = 'ui-monospace, "Courier New", monospace';
       const tmp = document.createElement('canvas').getContext('2d')!;
       tmp.font = `600 ${baseFontSize}px ${FONT_FAMILY}`;
-      const naturalW = tmp.measureText(text).width;
-      const scaledSize = Math.floor(baseFontSize * (parentW / naturalW) * 0.95);
+      const measuredW = tmp.measureText(text).width;
+      const scaledSize = Math.floor(baseFontSize * (parentW / measuredW) * 0.95);
       const sampleFont = `600 ${scaledSize}px ${FONT_FAMILY}`;
 
       const scaledH = Math.ceil(scaledSize * 1.15);
-      canvas.style.height = scaledH + 'px';
+      if (scaledH !== estimatedH) {
+        container.style.height = scaledH + 'px';
+        canvas.style.height = scaledH + 'px';
+        canvas.height = scaledH * dpr;
+      }
       canvas.width = parentW * dpr;
-      canvas.height = scaledH * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Off-screen canvas to sample text pixels
@@ -277,7 +288,11 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
   }, [text]);
 
   return (
-    <div ref={containerRef} class="mb-4 leading-0" aria-hidden="true">
+    <div
+      ref={containerRef}
+      class="mb-4 leading-0"
+      aria-hidden="true"
+    >
       <canvas ref={canvasRef} class="block" />
     </div>
   );
