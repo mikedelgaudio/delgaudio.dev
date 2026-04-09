@@ -13,20 +13,11 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    // Respect reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      container.style.display = 'none';
-      return;
-    }
+    // Respect reduced motion — render static text, no animation
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const ctx = canvas.getContext('2d')!;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    // Constants
-    const CHARS_FULL = '.:+-=*#@&~<>{}[]|/\\';
-    const CHARS_DOTS = '01';
-    const SPRING = 0.04;
-    const DAMP = 0.88;
 
     // Read accent color from CSS variable
     let accent = getComputedStyle(document.documentElement)
@@ -38,6 +29,7 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
       accent = getComputedStyle(document.documentElement)
         .getPropertyValue('--theme-accent')
         .trim();
+      if (reducedMotion) drawStatic();
     });
     themeObs.observe(document.documentElement, {
       attributes: true,
@@ -46,7 +38,7 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
 
     // Responsive config
     const isMobile = window.innerWidth <= 600;
-    const CHARS = isMobile ? CHARS_DOTS : CHARS_FULL;
+    const CHARS = isMobile ? '01' : '.:+-=*#@&~<>{}[]|/\\';
     const parentW = container.offsetWidth;
     const STEP = isMobile ? 2 : 4;
     const CHAR_SIZE = isMobile ? 3 : 6;
@@ -69,6 +61,23 @@ function AsciiHero({ text = "Hi, I'm Mike" }: AsciiHeroProps) {
     canvas.width = parentW * dpr;
     canvas.height = estimatedH * dpr;
     ctx.scale(dpr, dpr);
+
+    // Static render for reduced motion
+    function drawStatic() {
+      ctx.clearRect(0, 0, parentW, estimatedH);
+      ctx.font = `600 ${estimatedSize}px ${FONT_FAMILY}`;
+      ctx.fillStyle = accent;
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, 0, estimatedH / 2);
+    }
+
+    if (reducedMotion) {
+      document.fonts.ready.then(() => drawStatic());
+      return () => { themeObs.disconnect(); };
+    }
+
+    const SPRING = 0.04;
+    const DAMP = 0.88;
 
     // Particle type
     type P = {
