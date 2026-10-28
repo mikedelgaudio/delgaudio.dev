@@ -1,47 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="paper">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#2b2e33" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="theme-color"
+      content="#f6f3ec"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#16171a"
+      media="(prefers-color-scheme: dark)"
+    />
     <title>Mike DelGaudio - Software Engineer</title>
+    <!-- Without JavaScript, sections show immediately -->
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
     <meta
       name="description"
-      content="The personal website of Mike DelGaudio. Passionate software engineer, writer, and advocate for all web UI."
+      content="Mike DelGaudio is a software engineer at Microsoft building product experiences across SharePoint and OneDrive for 100M+ people a month, and the agent infrastructure behind Copilot in SharePoint."
+    />
+    <meta name="author" content="Mike DelGaudio" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
     />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://delgaudio.dev" />
-    <meta
-      property="og:title"
-      content="Mike DelGaudio - Software Engineer"
-    />
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Mike DelGaudio" />
+    <meta property="og:title" content="Mike DelGaudio - Software Engineer" />
     <meta
       property="og:description"
-      content="The personal website of Mike DelGaudio. Passionate software engineer, writer, and advocate for all web UI."
+      content="Software engineer, product and AI agents. Product experiences across SharePoint and OneDrive, and the agent infrastructure behind Copilot in SharePoint, at Microsoft."
+    />
+    <meta property="og:image" content="https://delgaudio.dev/social-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Mike DelGaudio, software engineer, product and AI agents. SharePoint, OneDrive and Copilot at Microsoft."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Mike" />
+    <meta property="profile:last_name" content="DelGaudio" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mike DelGaudio - Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer, product and AI agents. Product experiences across SharePoint and OneDrive, and the agent infrastructure behind Copilot in SharePoint, at Microsoft."
     />
     <meta
-      property="og:image"
-      content="https://delgaudio.dev/social-cover.jpg"
+      name="twitter:image"
+      content="https://delgaudio.dev/social-card.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Mike DelGaudio, software engineer, product and AI agents. SharePoint, OneDrive and Copilot at Microsoft."
     />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://delgaudio.dev" />
-    <meta
-      property="twitter:title"
-      content="Mike DelGaudio - Software Engineer"
-    />
-    <meta
-      property="twitter:description"
-      content="The personal website of Mike DelGaudio. Passionate software engineer, writer, and advocate for all web UI."
-    />
-    <meta
-      property="twitter:image"
-      content="https://delgaudio.dev/social-cover.jpg"
-    />
+    <!-- Structured data: who this site is about -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mike DelGaudio",
+        "alternateName": "Michael DelGaudio",
+        "url": "https://delgaudio.dev/",
+        "image": "https://delgaudio.dev/social-card.jpg",
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Microsoft" },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Stevens Institute of Technology"
+        },
+        "knowsAbout": [
+          "AI agents",
+          "Model Context Protocol",
+          "LLM orchestration",
+          "TypeScript",
+          "React",
+          "Product engineering"
+        ],
+        "sameAs": [
+          "https://github.com/mikedelgaudio",
+          "https://blog.delgaudio.dev/",
+          "https://www.linkedin.com/in/michael-delgaudio/"
+        ]
+      }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script
@@ -58,23 +129,23 @@
       gtag('config', 'G-J53EW5XVC8');
     </script>
     <script>
-      // Prevent FOUC: apply saved theme before first paint
+      // Prevent a flash of the wrong theme: stored choice, else the system setting
       (function () {
-        var t = localStorage.getItem('theme');
-        if (t) {
-          document.documentElement.setAttribute('data-theme', t);
-        } else if (
-          window.matchMedia('(prefers-color-scheme: dark)').matches
-        ) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'dark');
+        var t = null;
+        try {
+          t = localStorage.getItem('theme');
+        } catch (e) {}
+        if (t !== 'paper' && t !== 'night') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'night'
+            : 'paper';
         }
+        document.documentElement.setAttribute('data-theme', t);
       })();
     </script>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script prerender type="module" src="/src/main.tsx"></script>
   </body>
 </html>

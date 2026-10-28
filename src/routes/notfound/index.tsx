@@ -1,17 +1,16 @@
-import { Link } from 'preact-router';
 import { useTitle } from '../../hooks/useTitle';
 
 function NotFound() {
-  useTitle('404 Not Found');
+  useTitle('Not found');
 
   return (
-    <div class={'grid'}>
-      <h1 class={'text-3xl font-bold'}>404 - Not Found</h1>
-      <p>Sorry, the page you are looking for does not exist.</p>
-      <Link class={'underline hover:no-underline mt-5'} href={'/'}>
-        Go Home
-      </Link>
-    </div>
+    <section class="pt-12 sm:pt-20">
+      <h1 class="font-display font-normal text-[40px] leading-[46px] tracking-[-0.015em] text-ink mb-4">
+        Page not found
+      </h1>
+      <p class="text-ink-muted mb-6">There’s nothing at this address.</p>
+      <a href="/">Back to the home page</a>
+    </section>
   );
 }
 

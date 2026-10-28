@@ -1,65 +1,97 @@
 import { VNode, createContext } from 'preact';
 import { useCallback, useEffect, useState } from 'preact/hooks';
-import {
-  DEFAULT_DARK_THEME,
-  THEMES,
-  THEME_STORAGE_KEY,
-} from '../themes/themes';
+
+export type Theme = 'paper' | 'night';
+
+export const THEME_STORAGE_KEY = 'theme';
+
+const THEME_COLOR: Record<Theme, string> = {
+  paper: '#f6f3ec',
+  night: '#16171a',
+};
 
 export const ThemeContext = createContext({
-  theme: DEFAULT_DARK_THEME,
-  setTheme: (_key: string, _event?: MouseEvent) => {},
+  theme: 'paper' as Theme,
+  toggleTheme: (_event?: MouseEvent) => {},
 });
 
-function getInitialTheme(): string {
-  const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  if (stored && THEMES.some(t => t.key === stored)) return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? DEFAULT_DARK_THEME
-    : DEFAULT_DARK_THEME;
+type ViewTransitionDocument = Document & {
+  startViewTransition?: (update: () => void) => unknown;
+};
+
+function readStoredTheme(): Theme | null {
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    return stored === 'paper' || stored === 'night' ? stored : null;
+  } catch {
+    return null;
+  }
 }
 
-function applyThemeAttribute(key: string) {
-  document.documentElement.setAttribute('data-theme', key);
-  // Update mobile browser chrome color to match theme background
-  const bg = getComputedStyle(document.documentElement).getPropertyValue('--theme-bg').trim();
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', bg);
+function getInitialTheme(): Theme {
+  // Prerendering has no window; the browser reads what the head script already applied
+  if (typeof window === 'undefined') return 'paper';
+  const applied = document.documentElement.getAttribute('data-theme');
+  if (applied === 'paper' || applied === 'night') return applied;
+  return (
+    readStoredTheme() ??
+    (window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'night'
+      : 'paper')
+  );
+}
+
+function applyTheme(theme: Theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  // Match mobile browser chrome to the page background
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', THEME_COLOR[theme]);
 }
 
 export function ThemeProvider({ children }: { children: VNode }) {
-  const [theme, setThemeState] = useState(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    applyThemeAttribute(theme);
+    applyTheme(theme);
   }, [theme]);
 
-  const setTheme = useCallback(
-    (key: string, event?: MouseEvent) => {
-      if (key === theme) return;
+  // Follow the system setting until the visitor picks a theme
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (e: MediaQueryListEvent) => {
+      if (!readStoredTheme()) setTheme(e.matches ? 'night' : 'paper');
+    };
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
 
-      const apply = () => {
-        applyThemeAttribute(key);
-        localStorage.setItem(THEME_STORAGE_KEY, key);
-        setThemeState(key);
-      };
+  const toggleTheme = useCallback(() => {
+    const next: Theme = theme === 'paper' ? 'night' : 'paper';
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, next);
+    } catch {
+      // Storage can be unavailable (private mode); the toggle still works
+    }
 
-      // Use View Transitions API with ripple effect when available
-      if (event && (document as any).startViewTransition) {
-        const x = event.clientX;
-        const y = event.clientY;
-        document.documentElement.style.setProperty('--ripple-x', `${x}px`);
-        document.documentElement.style.setProperty('--ripple-y', `${y}px`);
-        (document as any).startViewTransition(apply);
-      } else {
-        apply();
-      }
-    },
-    [theme],
-  );
+    // Cross-fade between themes where the View Transitions API exists.
+    // The attribute is set inside the callback so the new snapshot has the new colors.
+    const doc = document as ViewTransitionDocument;
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (doc.startViewTransition && !reduceMotion) {
+      doc.startViewTransition(() => {
+        applyTheme(next);
+        setTheme(next);
+      });
+    } else {
+      setTheme(next);
+    }
+  }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -1,30 +1,28 @@
 import { Route, Router } from 'preact-router';
 
-// Code-splitting is automated for `routes` directory
-import FooterDroids from './components/footerDroids';
+import Footer from './components/footer';
 import NavigationBar from './components/navigationBar';
 import { ThemeProvider } from './contexts/theme.context';
 import Home from './routes/home/Home';
 import NotFound from './routes/notfound';
 import Projects from './routes/projects';
 
-function App() {
+function App({ url }: { url?: string }) {
   return (
     <ThemeProvider>
-      <div class="text-on-surface bg-surface min-h-[100dvh] relative z-0 overflow-hidden flex flex-col">
-        <div class="antialiased flex justify-center p-8 flex-1">
-          <div class="flex flex-col max-w-[80ch] w-full">
-            <NavigationBar />
-            <main>
-              <Router>
-                <Route path="/" component={Home} />
-                <Route path="/projects" component={Projects} />
-                <Route default component={NotFound} />
-              </Router>
-            </main>
-          </div>
+      <div class="isolate min-h-[100dvh] overflow-x-clip bg-surface text-ink">
+        {/* One centered reading column for the nav, page and footer */}
+        <div class="mx-auto w-full max-w-[744px] px-6 sm:px-8">
+          <NavigationBar />
+          <main id="main-content" tabIndex={-1} class="focus:outline-none">
+            <Router url={url}>
+              <Route path="/" component={Home} />
+              <Route path="/projects" component={Projects} />
+              <Route default component={NotFound} />
+            </Router>
+          </main>
+          <Footer />
         </div>
-        <FooterDroids />
       </div>
     </ThemeProvider>
   );

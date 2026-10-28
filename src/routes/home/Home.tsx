@@ -1,90 +1,85 @@
-import { Link } from 'preact-router';
-import { useMemo } from 'preact/hooks';
-import { PROJECTS } from '../../assets/projects/projects';
-import AsciiHero from '../../components/asciiHero';
-import BlobBuddy from '../../components/blobBuddy';
-import Card from '../../components/card';
+import { BLOG, EMAIL, GITHUB, LINKEDIN, WORK } from '../../content/profile';
+import ExperienceList from '../../components/experienceList';
+import PostList from '../../components/postList';
+import SideProjects from '../../components/sideProjects';
+import Reveal from '../../components/reveal';
+import WorkRow from '../../components/workRow';
+
+const sectionHeading = 'text-lg font-semibold text-ink mb-6';
 
 function Home() {
-  const projectsList = useMemo(() => {
-    return PROJECTS.map((project, index) => {
-      if (index > 2) return;
-      return (
-        <Card
-          key={project.header}
-          header={project.header}
-          description={project.description}
-          link={project.link}
-          index={index}
-        />
-      );
-    });
-  }, [PROJECTS]);
-
   return (
-    <div class="grid z-[1]">
-      <section class="intro-section relative pt-10 pb-12 overflow-hidden">
-        <div class="sm:max-w-[55%] mb-4">
-          <AsciiHero text="mike d" />
-          <h1 class="sr-only">Mike D — Software Engineer</h1>
-        </div>
-
-        <p class={'sm:max-w-[55%] text-base leading-[1.75]'}>
-          Software engineer at{' '}
-          <span class={'font-semibold text-[#22c55e]'}>Microsoft</span>.
-          Previously at{' '}
-          <span class={'font-semibold text-[#09a7f0]'}>Google</span> and{' '}
-          <span class={'font-semibold text-[#f35326]'}>Colgate</span>. I build
-          performance-driven systems and MCP tooling that empowers them. I focus
-          on low-level performance, user experiences, and building interfaces
-          that integrate LLMs into real workflows.
+    <div class="grid gap-12 sm:gap-16 pb-8">
+      <section class="fade-in flex flex-col items-center justify-center text-center min-h-[48svh] sm:min-h-[54svh] py-12 sm:py-16">
+        <h1 class="font-display font-normal text-[52px] leading-[54px] sm:text-[88px] sm:leading-[88px] tracking-[-0.025em] text-ink mb-3 sm:mb-4">
+          Mike DelGaudio
+        </h1>
+        <p class="text-lg leading-[26px] sm:text-[22px] sm:leading-[30px] font-medium text-ink mb-5 sm:mb-6">
+          Software engineer, product and AI agents
         </p>
-
-        <div class="hidden sm:block absolute right-8 bottom-6 w-[140px] md:w-[180px] lg:w-[220px]">
-          <BlobBuddy />
-        </div>
-      </section>
-
-      <section class="now-block mb-12">
-        <span class="now-label">What I'm working on</span>
-        <p>
-          Building <strong>MCP integrations</strong> that connect AI agents to
-          real user file systems and workflow automations on the web. Focused on
-          search, retrieval, and orchestration tooling that powers{' '}
-          <strong>agentic experiences</strong> at scale.
+        <p class="text-[17px] leading-[28px] sm:text-xl sm:leading-[32px] text-ink-muted max-w-[640px] mx-auto">
+          At Microsoft, I build product experiences across SharePoint and
+          OneDrive for the 100M+ people who use them every month, and the agent
+          infrastructure behind Copilot in SharePoint.
+        </p>
+        <p class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-base">
+          <a href={`mailto:${EMAIL}`} data-native>
+            Email
+          </a>
+          <a href={GITHUB} target="_blank" rel="noopener" data-native>
+            GitHub
+          </a>
+          <a href={LINKEDIN} target="_blank" rel="noopener" data-native>
+            LinkedIn
+          </a>
+          <a href={BLOG} target="_blank" rel="noopener" data-native>
+            Blog
+          </a>
         </p>
       </section>
 
-      <section>
-        <h2 class="font-semibold text-[1.1rem] pb-2 mb-6 border-b border-outline">
-          Recent Projects
-        </h2>
-        <div class="grid gap-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {projectsList}
-          </div>
-          <Link
-            href="/projects"
-            class="text-accent hover:underline text-[0.88rem] flex items-center gap-1"
-          >
-            See all projects{' '}
-            <svg
-              class="w-3 h-3"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </Link>
-        </div>
+      <section id="work" aria-labelledby="work-heading" class="scroll-mt-8">
+        <Reveal as="h2" id="work-heading" class={sectionHeading}>
+          Work
+        </Reveal>
+        <ul class="grid gap-10">
+          {WORK.map(item => (
+            <WorkRow key={item.title} item={item} />
+          ))}
+        </ul>
+      </section>
+
+      <section
+        id="writing"
+        aria-labelledby="writing-heading"
+        class="scroll-mt-8"
+      >
+        <Reveal as="h2" id="writing-heading" class={sectionHeading}>
+          Writing
+        </Reveal>
+        <PostList />
+      </section>
+
+      <section
+        id="experience"
+        aria-labelledby="experience-heading"
+        class="scroll-mt-8"
+      >
+        <Reveal as="h2" id="experience-heading" class={sectionHeading}>
+          Experience
+        </Reveal>
+        <ExperienceList />
+      </section>
+
+      <section
+        id="projects"
+        aria-labelledby="projects-heading"
+        class="scroll-mt-8"
+      >
+        <Reveal as="h2" id="projects-heading" class={sectionHeading}>
+          Side projects
+        </Reveal>
+        <SideProjects />
       </section>
     </div>
   );

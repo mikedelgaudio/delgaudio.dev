@@ -1,6 +1,30 @@
+// Call-graph M: one path through five nodes, the middle node in accent
+export const MARK = (
+  <svg
+    class="w-8 h-[30px]"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="120 136 400 368"
+  >
+    <path
+      d="M168 456V184l152 176 152-176v272"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="44"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+    />
+    <circle cx="168" cy="184" r="40" fill="currentColor" />
+    <circle cx="472" cy="184" r="40" fill="currentColor" />
+    <circle cx="168" cy="456" r="40" fill="currentColor" />
+    <circle cx="472" cy="456" r="40" fill="currentColor" />
+    <circle cx="320" cy="360" r="48" fill="var(--accent)" />
+  </svg>
+);
+
 export const GITHUB_ICON = (
   <svg
-    class="w-[1.1rem] h-[1.1rem]"
+    class="w-4 h-4"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
@@ -16,7 +40,7 @@ export const GITHUB_ICON = (
 
 export const LINKEDIN_ICON = (
   <svg
-    class="w-[1.1rem] h-[1.1rem]"
+    class="w-4 h-4"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
@@ -31,15 +55,63 @@ export const LINKEDIN_ICON = (
   </svg>
 );
 
-export const EXTERNAL_LINK_ICON = (
+export const SUN_ICON = (
   <svg
-    class="w-[0.65rem] h-[0.65rem] text-on-surface-muted"
+    class="w-4 h-4"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+);
+
+export const MOON_ICON = (
+  <svg
+    class="w-4 h-4"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+  </svg>
+);
+
+export const YOUTUBE_ICON = (
+  <svg
+    class="w-4 h-4"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
-    viewBox="0 0 18 18"
+    viewBox="0 0 24 24"
   >
-    <path d="M17 0h-5.768a1 1 0 1 0 0 2h3.354L8.4 8.182A1.003 1.003 0 1 0 9.818 9.6L16 3.414v3.354a1 1 0 0 0 2 0V1a1 1 0 0 0-1-1Z"></path>
-    <path d="m14.258 7.985-3.025 3.025A3 3 0 1 1 6.99 6.768l3.026-3.026A3.01 3.01 0 0 1 8.411 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V9.589a3.011 3.011 0 0 1-1.742-1.604Z"></path>
+    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z" />
+  </svg>
+);
+
+export const GLOBE_ICON = (
+  <svg
+    class="w-4 h-4"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="9.25" />
+    <path d="M2.75 12h18.5M12 2.75c2.5 2.6 3.75 5.7 3.75 9.25S14.5 18.65 12 21.25M12 2.75C9.5 5.35 8.25 8.45 8.25 12s1.25 6.65 3.75 9.25" />
   </svg>
 );
