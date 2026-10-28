@@ -1,5 +1,6 @@
 // Cloudflare Workers static assets: serves the Vite build in dist/.
-// Workers Builds runs `npm run build` on every push; main deploys to production.
+// Workers Builds runs `npm run build` on every push; main deploys to
+// production at delgaudio.dev, other branches get preview URLs.
 {
   "name": "delgaudio-dev",
   "compatibility_date": "2026-10-01",

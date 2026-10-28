@@ -1,19 +1,17 @@
 # delgaudio.dev
-The third edition of my personal portfolio website.
+My personal site, built with Preact, Vite and Tailwind and prerendered to static HTML.
 
-## Docker Build
-
-### `linux/arm64`
+## Develop
 ```bash
-docker buildx build --platform linux/arm64 --no-cache -t delgaudiov3:latest .
+npm install
+npm run dev
 ```
 
-### `linux/amd64`
+## Build
 ```bash
-docker buildx build --platform linux/amd64 --no-cache -t delgaudiov3:latest .
+npm run build
 ```
+The static site is written to `dist/`.
 
-## Docker Run
-```bash
-docker run -d -p 80:80 delgaudiov3:latest
-```
+## Deploy
+Hosted on Cloudflare Workers static assets (see `wrangler.jsonc`). Workers Builds deploys `main` to production at https://delgaudio.dev on every push; other branches get preview URLs.
