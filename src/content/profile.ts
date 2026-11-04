@@ -24,13 +24,22 @@ export interface SideProject {
 
 export const WORK: WorkItem[] = [
   {
+    title: 'SharePoint tools in Work IQ',
+    meta: 'Microsoft · 2026',
+    link: {
+      href: 'https://techcommunity.microsoft.com/blog/SPBlog/introducing-sharepoint-tools-in-work-iq/4569917',
+      label: 'Microsoft blog post',
+    },
+    body: 'I led and designed the system that takes the tools behind Copilot in SharePoint to any agent through the Work IQ MCP server: more than 60 SharePoint operations exposed as discoverable paths behind a few tool verbs, run as the signed-in user and routed in a single hop. In Microsoft’s evals, it raised task pass rate from 70.1% to 84.6% with 16% fewer tokens. In public preview.',
+  },
+  {
     title: 'File-navigation tools for Copilot in SharePoint',
     meta: 'Microsoft · 2024–now',
     link: {
       href: 'https://support.microsoft.com/en-us/sharepoint/copilot-in-sharepoint/copilot-in-sharepoint-an-overview',
       label: 'Product overview',
     },
-    body: 'I build and orchestrate the tools the Copilot in SharePoint agent uses to find its way through files: grep, glob, find and search across sites and libraries. I design them like an SDK, with clear contracts, output that fits the context window, and failures the agent can recover from. Shipped to Copilot in SharePoint customers.',
+    body: 'I build and orchestrate the tools the Copilot in SharePoint agent uses to find its way through files: grep, glob, find and search across sites and libraries. I design them like an SDK, with clear contracts, output that fits the context window, and failures the agent can recover from. Copilot in SharePoint has been generally available since September 2026.',
   },
   {
     title: 'SharePoint Document Library redesign',
@@ -48,8 +57,8 @@ export const EXPERIENCE: Role[] = [
     when: '2024–now',
     title: 'Software Engineer II',
     org: 'Microsoft',
-    what: 'Built and orchestrate the file-navigation tools (grep, glob, find, search) behind Copilot in SharePoint; led frontend for the Document Library redesign, GA to 100M+ monthly users.',
-    skills: ['TypeScript', 'React', 'LLM orchestration'],
+    what: 'Led and designed SharePoint tools in Work IQ, bringing Copilot in SharePoint’s tools to any agent over MCP; built the file-navigation tools behind Copilot in SharePoint; led frontend for the Document Library redesign, GA to 100M+ monthly users.',
+    skills: ['TypeScript', 'MCP', 'LLM orchestration'],
   },
   {
     when: '2023–2024',
