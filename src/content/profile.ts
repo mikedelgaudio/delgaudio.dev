@@ -39,7 +39,7 @@ export const WORK: WorkItem[] = [
       href: 'https://techcommunity.microsoft.com/blog/spblog/sharepoint-ai-innovations-hit-ga-powering-new-copilot-app-and-agents/4555724',
       label: 'Microsoft blog post',
     },
-    body: 'I build and orchestrate the tools the Copilot in SharePoint agent uses to find its way through files: grep, glob, find and search across sites and libraries. I design them like an SDK, with clear contracts, output that fits the context window, and failures the agent can recover from. Copilot in SharePoint has been generally available since September 2026.',
+    body: 'I build and orchestrate the tools the Copilot in SharePoint agent uses to find its way through files: grep, glob, find and search across sites and libraries. I design them with clear contracts, output that fits the context window, and failures the agent can recover from. Copilot in SharePoint has been generally available since September 2026.',
   },
   {
     title: 'SharePoint Document Library redesign',
