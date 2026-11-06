@@ -18,9 +18,8 @@ function ExperienceList() {
               <span class="font-semibold">{role.title}</span>
               <span class="text-ink-muted"> · {role.org}</span>
             </p>
-            <p class="text-sm leading-[22px] text-ink-muted">{role.what}</p>
             {role.skills.length > 0 && (
-              <p class="text-sm leading-[22px] text-ink-subtle mt-0.5">
+              <p class="text-sm leading-[22px] text-ink-subtle">
                 {role.skills.join(', ')}
               </p>
             )}

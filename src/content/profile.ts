@@ -10,7 +10,6 @@ export interface Role {
   when: string;
   title: string;
   org: string;
-  what: string;
   skills: string[];
 }
 
@@ -57,49 +56,42 @@ export const EXPERIENCE: Role[] = [
     when: '2024–now',
     title: 'Software Engineer II',
     org: 'Microsoft',
-    what: 'Led and designed SharePoint tools in Work IQ, bringing Copilot in SharePoint’s tools to any agent over MCP; built the file-navigation tools behind Copilot in SharePoint; led frontend for the Document Library redesign, GA to 100M+ monthly users.',
     skills: ['TypeScript', 'MCP', 'LLM orchestration'],
   },
   {
     when: '2023–2024',
     title: 'Software Engineer',
     org: 'Microsoft',
-    what: 'Moved Fluent UI React components to native Preact in OneDrive/SharePoint; built a Playwright test runner for SPFx extensions.',
     skills: ['Preact', 'React', 'Playwright'],
   },
   {
     when: '2022',
     title: 'Software Engineer Intern',
     org: 'Microsoft',
-    what: 'Developer analytics dashboards for the Windows platform team in React, TypeScript and MobX.',
     skills: ['React', 'TypeScript', 'MobX'],
   },
   {
     when: '2020–2023',
     title: 'Software Engineer Intern',
     org: 'Colgate-Palmolive',
-    what: 'Hill’s B2B eCommerce: a CI gate that stopped 96% of build errors before production; load time down 32%.',
     skills: ['Angular', 'NgRx', 'GitHub Actions'],
   },
   {
     when: '2021',
     title: 'Technical Writer Intern',
     org: 'Google',
-    what: 'Fuchsia setup and configuration docs that shortened onboarding for 500+ engineers.',
     skills: ['Technical writing', 'HTML/CSS', 'JavaScript'],
   },
   {
     when: '2019',
     title: 'Web Developer Intern',
     org: 'U.S. District Court, SDNY',
-    what: 'Rebuilt the public site to a 99 Lighthouse accessibility score.',
     skills: ['PHP', 'JavaScript', 'Accessibility'],
   },
   {
     when: 'Education',
     title: 'B.S. Computer Science',
     org: 'Stevens Institute of Technology',
-    what: 'Co-op program, Dean’s List.',
     skills: [],
   },
 ];
