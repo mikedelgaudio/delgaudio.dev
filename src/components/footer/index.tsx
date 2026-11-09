@@ -3,7 +3,7 @@ import { EMAIL, GITHUB, LINKEDIN } from '../../content/profile';
 
 function Footer() {
   return (
-    <footer class="mt-16 py-8 border-t border-hairline flex flex-wrap items-center gap-3 text-sm leading-[22px] text-ink-muted">
+    <footer data-track-group="footer" class="mt-16 py-8 border-t border-hairline flex flex-wrap items-center gap-3 text-sm leading-[22px] text-ink-muted">
       <img
         src={avatar}
         alt="Mike DelGaudio"

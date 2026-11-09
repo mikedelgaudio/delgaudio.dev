@@ -32,6 +32,7 @@ function PostList() {
           target="_blank"
           rel="noopener"
           data-native
+          data-track-label="All posts"
           class="underline decoration-1 underline-offset-4 hover:decoration-2"
         >
           All posts

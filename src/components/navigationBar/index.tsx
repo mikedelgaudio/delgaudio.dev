@@ -62,7 +62,7 @@ function NavigationBar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header class="border-b border-hairline text-sm leading-5">
+    <header data-track-group="nav" class="border-b border-hairline text-sm leading-5">
       <a class="skip-link font-sans" href="#main-content">
         Skip to content
       </a>

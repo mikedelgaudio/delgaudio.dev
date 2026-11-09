@@ -10,7 +10,7 @@ const sectionHeading = 'text-lg font-semibold text-ink mb-6';
 function Home() {
   return (
     <div class="grid gap-12 sm:gap-16 pb-8">
-      <section class="fade-in flex flex-col items-center justify-center text-center min-h-[48svh] sm:min-h-[54svh] py-12 sm:py-16">
+      <section data-track-group="hero" class="fade-in flex flex-col items-center justify-center text-center min-h-[48svh] sm:min-h-[54svh] py-12 sm:py-16">
         <h1 class="font-display font-normal text-[52px] leading-[54px] sm:text-[88px] sm:leading-[88px] tracking-[-0.025em] text-ink mb-3 sm:mb-4">
           Mike DelGaudio
         </h1>
@@ -38,7 +38,7 @@ function Home() {
         </p>
       </section>
 
-      <section id="work" aria-labelledby="work-heading" class="scroll-mt-8">
+      <section id="work" data-track-group="work" aria-labelledby="work-heading" class="scroll-mt-8">
         <Reveal as="h2" id="work-heading" class={sectionHeading}>
           Work
         </Reveal>
@@ -51,6 +51,7 @@ function Home() {
 
       <section
         id="writing"
+        data-track-group="writing"
         aria-labelledby="writing-heading"
         class="scroll-mt-8"
       >
@@ -62,6 +63,7 @@ function Home() {
 
       <section
         id="experience"
+        data-track-group="experience"
         aria-labelledby="experience-heading"
         class="scroll-mt-8"
       >
@@ -73,6 +75,7 @@ function Home() {
 
       <section
         id="projects"
+        data-track-group="projects"
         aria-labelledby="projects-heading"
         class="scroll-mt-8"
       >

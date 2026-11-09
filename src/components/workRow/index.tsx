@@ -20,6 +20,7 @@ function WorkRow({ item }: WorkRowProps) {
             target="_blank"
             rel="noopener"
             data-native
+            data-track-label={item.title}
             class="underline decoration-1 underline-offset-4 hover:decoration-2"
           >
             {item.link.label}

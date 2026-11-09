@@ -1,9 +1,11 @@
 import { hydrate, prerender as renderToHtml } from 'preact-iso';
+import { initAnalytics } from './analytics';
 import App from './app';
 import './index.css';
 
 if (typeof window !== 'undefined') {
   hydrate(<App />, document.getElementById('app') as HTMLElement);
+  initAnalytics();
 }
 
 // Per-page head for the static HTML written at build time
